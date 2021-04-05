@@ -1,16 +1,39 @@
-﻿namespace Course.Services
-{
-    internal class Invoice
-    {
-        private double baseIpi;
-        private double icmsValue;
-        private double ipiValue;
+﻿using System.Globalization;
 
-        public Invoice(double baseIpi, double icmsValue, double ipiValue)
+namespace Course.Entities
+{
+    class Invoice
+    {
+        public double BasicValue;
+        public Product Product;
+        public double BaseIpi;
+        public double IcmsValue;
+        public double IpiValue;
+
+        public Invoice(Product product, double basicValue)
         {
-            this.baseIpi = baseIpi;
-            this.icmsValue = icmsValue;
-            this.ipiValue = ipiValue;
+            Product = product;
+            BasicValue = basicValue;
+        }
+
+        public Invoice(double baseIpi, double icmsValue, double ipiValue, Product product)
+        {
+            BaseIpi = baseIpi;
+            IcmsValue = icmsValue;
+            IpiValue = ipiValue;
+            Product = product;
+        }
+
+        public override string ToString()
+        {
+            return "Product: "
+                +Product
+                +", Base value: "
+                +BaseIpi
+                +", ICMS value: " +
+                +IcmsValue
+                +", IPI value: "
+                +IpiValue;
         }
     }
 }

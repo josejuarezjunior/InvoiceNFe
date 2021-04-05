@@ -1,5 +1,4 @@
-﻿using System;
-using Course.Entities;
+﻿using Course.Entities;
 
 namespace Course.Services
 {
@@ -12,13 +11,14 @@ namespace Course.Services
             _taxService = taxService;
         }
 
-        public void ProcessInvoice(Product product, int icmsAliquot, int ipiAliquot)
+        public void ProcessInvoice(Invoice invoice ,double value, int icmsAliquot, int ipiAliquot)
         {
-            double ValueWithoutTax = product.Value;
-            double IcmsValue = _taxService.IcmsValue(ValueWithoutTax, icmsAliquot);
-            double BaseIpi = ValueWithoutTax / (100 - icmsAliquot);
-            double IpiValue = _taxService.IpiValue(BaseIpi, ipiAliquot);
-            Invoice invoice = new Invoice(BaseIpi, IcmsValue, IpiValue);
+            double IcmsValue = _taxService.IcmsValue(value, icmsAliquot);
+            double BaseWithIcms = value + IcmsValue;
+            double IpiValue = _taxService.IpiValue(BaseWithIcms, ipiAliquot);
+            invoice.IcmsValue = IcmsValue;
+            invoice.BaseIpi = BaseWithIcms;
+            invoice.IpiValue = IpiValue;
         }
     }
 }

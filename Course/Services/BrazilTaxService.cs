@@ -1,20 +1,14 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-
-namespace Course.Services
+﻿namespace Course.Services
 {
     class BrazilTaxService : ITaxService
     {
         public double IcmsValue(double amount, int icmsAliquot)
         {
-            return (amount / ((100-icmsAliquot)/100)) * (icmsAliquot/100);
+            return (amount / ((100 - icmsAliquot)/100)) * (icmsAliquot/100);
         }
         public double IpiValue(double amount, int ipiAliquot)
         {
-            return amount * (ipiAliquot/100);
+            return amount * 10;
         }
 
         /*

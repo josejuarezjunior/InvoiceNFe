@@ -16,7 +16,9 @@ namespace Course
             string nameProduct = Console.ReadLine();
             Console.Write("Type product value before ICMS: ");
             double valueProduct = double.Parse(Console.ReadLine(), CultureInfo.InvariantCulture);
-            Product product = new Product(nameProduct, valueProduct);
+
+            //Product product = new Product(nameProduct);
+            Invoice myInvoice = new Invoice(new Product(nameProduct),valueProduct);
 
             Console.Write("Type ICMS aliquot: ");
             int icmsAliquot = int.Parse(Console.ReadLine());
@@ -24,13 +26,13 @@ namespace Course
             int ipiAliquot = int.Parse(Console.ReadLine());
 
             TributationService tributationService = new TributationService(new BrazilTaxService());
-            tributationService.ProcessInvoice(product, icmsAliquot, ipiAliquot);
+            tributationService.ProcessInvoice(myInvoice, valueProduct, icmsAliquot, ipiAliquot);
 
             DateTime thisDay = DateTime.Today;
             Console.WriteLine(thisDay.ToString("D"));
 
             Console.WriteLine();
-            Console.WriteLine();
+            Console.WriteLine(myInvoice);
 
         }
     }
