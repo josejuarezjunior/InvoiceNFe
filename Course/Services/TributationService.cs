@@ -11,7 +11,7 @@ namespace Course.Services
             _taxService = taxService;
         }
 
-        public void ProcessInvoice(Invoice invoice ,double value, int icmsAliquot, int ipiAliquot)
+        public void ProcessInvoice(Invoice invoice ,double value, double icmsAliquot, double ipiAliquot)
         {
             double IcmsValue = _taxService.IcmsValue(value, icmsAliquot);
             double BaseWithIcms = value + IcmsValue;

@@ -2,13 +2,13 @@
 {
     class BrazilTaxService : ITaxService
     {
-        public double IcmsValue(double amount, int icmsAliquot)
+        public double IcmsValue(double amount, double icmsAliquot)
         {
-            return (amount / ((100 - icmsAliquot)/100)) * (icmsAliquot/100);
+            return amount / ((100 - icmsAliquot)/100) * (icmsAliquot/100);
         }
-        public double IpiValue(double amount, int ipiAliquot)
+        public double IpiValue(double amount, double ipiAliquot)
         {
-            return amount * 10;
+            return amount * (ipiAliquot / 100);
         }
 
         /*

@@ -9,6 +9,10 @@ namespace Course.Entities
         public double BaseIpi;
         public double IcmsValue;
         public double IpiValue;
+        public double TotaInvoice
+        {
+            get { return BaseIpi + IpiValue; }
+        }
 
         public Invoice(Product product, double basicValue)
         {
@@ -27,7 +31,7 @@ namespace Course.Entities
         public override string ToString()
         {
             return "Product: "
-                +Product
+                + Product
                 +", Base value: "
                 +BaseIpi
                 +", ICMS value: " +
