@@ -1,4 +1,5 @@
-﻿using System.Globalization;
+﻿using System;
+using System.Globalization;
 
 namespace Course.Entities
 {
@@ -14,10 +15,9 @@ namespace Course.Entities
             get { return BaseIpi + IpiValue; }
         }
 
-        public Invoice(Product product, double basicValue)
+        public Invoice(Product product)
         {
             Product = product;
-            BasicValue = basicValue;
         }
 
         public Invoice(double baseIpi, double icmsValue, double ipiValue, Product product)
@@ -32,12 +32,14 @@ namespace Course.Entities
         {
             return "Product: "
                 + Product
-                +", Base value: "
-                +BaseIpi
-                +", ICMS value: " +
-                +IcmsValue
-                +", IPI value: "
-                +IpiValue;
+                + "\nBase value: "
+                +BaseIpi.ToString("F2", CultureInfo.InvariantCulture)
+                + "\nICMS value: "
+                +IcmsValue.ToString("F2", CultureInfo.InvariantCulture)
+                + "\nIPI value: "
+                +IpiValue.ToString("F2", CultureInfo.InvariantCulture)
+                +"\nTotal invoice:"
+                +TotaInvoice.ToString("F2",CultureInfo.InvariantCulture);
         }
     }
 }
